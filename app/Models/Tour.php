@@ -20,11 +20,13 @@ class Tour extends Model
         'price',
     ];
 
-    protected $guarded = [
-        'id'
-    ];
     protected $hidden = [
         'id'
+    ];
+
+    protected $casts = [
+        'starting_date' => 'date',
+        'ending_date' => 'date'
     ];
     
     protected function price(): Attribute

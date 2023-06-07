@@ -15,11 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->boolean('is_public')->default(false);
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('name');
             $table->text('description');
             $table->unsignedSmallInteger('number_of_days');
-            $table->unsignedSmallInteger('number_of_nights');
 
             $table->timestamps();
         });
