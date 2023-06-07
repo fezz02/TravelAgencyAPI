@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Traits\RespectsPrivacy;
 
 class Travel extends Model
 {
-    use HasFactory, HasUuids, Sluggable;
+    use HasFactory, HasUuids, Sluggable, RespectsPrivacy;
+
+    protected $table = 'travels';
 
     protected $fillable = [
         'is_public',
@@ -22,7 +25,9 @@ class Travel extends Model
     ];
 
     protected $hidden = [
-        'id'
+        'id',
+        'created_at',
+        'updated_at',
     ];
 
     protected $casts = [
@@ -39,10 +44,15 @@ class Travel extends Model
         ];
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function numberOfNights(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attributes) => $attributes['numer_of_days'] - 1
+            get: fn($value) => $this->number_of_days - 1
         );
     }
     
