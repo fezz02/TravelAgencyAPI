@@ -13,10 +13,6 @@ class Role extends Model
     protected $fillable = [
         'name'
     ];
-    
-    protected $guarded = [
-        'id'
-    ];
 
     protected $hidden = [
         'id'

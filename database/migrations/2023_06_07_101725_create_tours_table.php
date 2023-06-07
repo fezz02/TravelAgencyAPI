@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('starting_date');
             $table->date('ending_date');
-            $table->unsignedFloat('price')->default(0);
+            $table->unsignedInteger('price')->default(0);
             $table->timestamps();
         });
     }

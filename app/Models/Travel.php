@@ -6,48 +6,46 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Travel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, Sluggable;
 
     protected $fillable = [
         'is_public',
+        'slug',
         'name',
         'description',
         'number_of_days',
-        'number_of_nights',
-    ];
-
-    protected $guarded = [
-        'id'
     ];
 
     protected $hidden = [
         'id'
     ];
 
-    protected static function boot()
+    protected $casts = [
+        'is_public' => 'boolean',
+        'number_of_days' => 'int'
+    ];
+
+    public function sluggable(): array
     {
-        parent::boot();
-
-        static::creating(function ($travel) {
-            Travel::updateAttributes($travel);
-        });
-
-        static::updating(function ($travel) {
-            Travel::updateAttributes($travel);
-        });
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
-    private static function updateAttributes($travel): Travel
+    public function numberOfNights(): Attribute
     {
-        $travel->slug = Str::slug($travel->title);
-        $travel->number_of_nights = $travel->number_of_days - 1;
-        return $travel;
+        return Attribute::make(
+            get: fn($value, $attributes) => $attributes['numer_of_days'] - 1
+        );
     }
-
+    
     public function tours(): HasMany
     {
         return $this->hasMany(Tour::class);
