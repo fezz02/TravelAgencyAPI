@@ -37,13 +37,5 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
-
-        Route::bind('slug', function (string $slug) {
-            $travel = Travel::query()
-                ->where('slug', $slug)
-                ->firstOrFail();
-    
-            return $travel;
-        });
     }
 }

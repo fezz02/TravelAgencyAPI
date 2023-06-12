@@ -22,13 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1', 'as' => 'v1.'], function() {
     Route::group(['prefix' => 'travels', 'as' => 'travels.'], function() {
-        Route::get('/', [TravelController::class, 'index']);
-        Route::post('/store', [TravelController::class, 'store']);
-        Route::put('/update/{slug}', [TravelController::class, 'update']);
-    });
+        Route::get('/', [TravelController::class, 'index'])->name('index');
+        Route::post('/store', [TravelController::class, 'store'])->name('store');
+        Route::put('/update/{travel}', [TravelController::class, 'update'])->name('update');
 
-    Route::group(['prefix' => 'tours', 'as' => 'tours.'], function() {
-        Route::get('/{slug}', [TourController::class, 'index']);
-        Route::post('{slug}/store', [TourController::class, 'store']);
+        Route::group(['as' => 'tours.'], function() {
+            Route::get('{travel}/tours', [TourController::class, 'index'])->name('index');
+            Route::post('{travel}/tours/store', [TourController::class, 'store'])->name('store');
+        });
     });
 });

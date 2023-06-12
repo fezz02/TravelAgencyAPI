@@ -15,8 +15,8 @@ class TravelController extends Controller
     public function index()
     {
         $travels = Travel::query()
-            ->public()
-            ->paginate();
+            ->onlyPublic()
+            ->paginate(config('crud.pagination.per_page.default'));
 
         return TravelResource::collection($travels);
     }
@@ -26,7 +26,6 @@ class TravelController extends Controller
         $travel = $service->store($request->validated());
         return response()->json(TravelResource::make($travel), 200);
     }
-
     
     public function update(UpdateTravelRequest $request, Travel $travel, TravelService $service)
     {

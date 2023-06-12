@@ -15,9 +15,9 @@ class TourController extends Controller
     
     public function index(Travel $travel)
     {
-        $tours = Tour::query()
-            ->fromTravel($travel)
-            ->paginate();
+        $tours = $travel->tours()
+            ->orderBy('starting_date')
+            ->paginate(config('crud.pagination.per_page.default'));
 
         return TourResource::collection($tours);
     }
