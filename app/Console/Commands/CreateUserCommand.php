@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class CreateUserCommand extends Command
 {
@@ -41,7 +42,7 @@ class CreateUserCommand extends Command
             ->firstOrFail()
             ?->id;
 
-        if(!validateUser($user)) return -1;
+        if(!$this->validateUser($user)) return -1;
         
         DB::transaction(function() use ($user, $roleId){
             $user = User::create($user);
@@ -51,7 +52,7 @@ class CreateUserCommand extends Command
         $this->info('user '.$user['name'].' with email '.$user['email'].' created successfully via artisan command');
     }
 
-    private function validateUser(User $user): bool
+    private function validateUser(array $user): bool
     {
         $validator = Validator::make($user, [
             'name' => ['required', 'string', 'max:255'],
@@ -66,7 +67,7 @@ class CreateUserCommand extends Command
          
             return false;
         }
-        return true
+        return true;
     }
 }
 

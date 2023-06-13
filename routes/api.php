@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\TourController;
 use App\Http\Controllers\Api\V1\TravelController;
 use Illuminate\Http\Request;
@@ -21,14 +22,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1', 'as' => 'v1.'], function() {
+    Route::post('/login', LoginController::class);
+
     Route::group(['prefix' => 'travels', 'as' => 'travels.'], function() {
         Route::get('/', [TravelController::class, 'index'])->name('index');
-        Route::post('/store', [TravelController::class, 'store'])->name('store');
-        Route::put('/update/{travel}', [TravelController::class, 'update'])->name('update');
+
+        // Authenticated users only
+        Route::middleware('auth:sanctum')->group(function(){
+            Route::post('/store', [TravelController::class, 'store'])->name('store');
+            Route::put('/update/{travel}', [TravelController::class, 'update'])->name('update');
+        });
 
         Route::group(['as' => 'tours.'], function() {
             Route::get('{travel}/tours', [TourController::class, 'index'])->name('index');
-            Route::post('{travel}/tours/store', [TourController::class, 'store'])->name('store');
+
+            // Authenticated users only
+            Route::middleware('auth:sanctum')->group(function(){
+                Route::post('{travel}/tours/store', [TourController::class, 'store'])->name('store');
+            });
         });
     });
 });
+

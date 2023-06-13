@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTravelRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,8 @@ class StoreTravelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'is_public' => ['required', 'boolean'],
-            'name' => ['required', 'unique:travels'],
-            'description' => ['required'],
-            'number_of_days' => ['required', 'min:1', 'max:365']
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
         ];
     }
 }
