@@ -51,7 +51,6 @@ class UserFactory extends Factory
                 ->inRandomOrder()
                 ->first()
                 ->id;
-
             $user->roles()->attach($role);
         });
     }

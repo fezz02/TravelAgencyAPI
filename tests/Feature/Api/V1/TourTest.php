@@ -1,11 +1,17 @@
 <?php
+
+use App\Models\Role;
 use \App\Models\Travel;
 use \App\Models\Tour;
+use Database\Seeders\RoleSeeder;
 use Symfony\Component\HttpFoundation\Response;
 
 test('guest can access tours using public travel slug', function () {
+    $this->seed(RoleSeeder::class);
+    $guest = \App\Models\User::factory()->create();
+
     $travel = Travel::factory(['is_public' => true])->create();
-    $response = $this->get(route('v1.travels.tours.index', ['travel' => $travel->slug]));
+    $response = $this->actingAs($guest)->get(route('v1.travels.tours.index', ['travel' => $travel->slug]));
 
     $response->assertStatus(200);
 });
@@ -79,6 +85,115 @@ test('tours validation works', function () {
         'orderBy' => 'test',
     ]);
     $response = $this->getJson(route('v1.travels.tours.index', ['travel' => $travel->slug]).'?'.$params);
+
+    $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+});
+
+test('unauthenticated user cannot access tour store', function () {
+    $travel = Travel::factory(['is_public' => true])->create();
+    Tour::factory()->create();
+
+    $params = http_build_query([
+        'name' => 'test tour',
+        'starting_date' => now()->format('Y-m-d'),
+        'ending_date' => now()->addWeek()->format('Y-m-d'),
+        'price' => random_int(20, 100)
+    ]);
+
+    $response = $this->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
+
+    $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+});
+
+test('user guest role cannot access tour store', function () {
+    $this->seed(RoleSeeder::class);
+    $guest = \App\Models\User::factory()->create();
+    $guest->roles()->sync([]);
+    
+    $travel = Travel::factory(['is_public' => true])->create();
+    Tour::factory()->create();
+
+    $params = http_build_query([
+        'name' => 'test tour',
+        'starting_date' => now()->format('Y-m-d'),
+        'ending_date' => now()->addWeek()->format('Y-m-d'),
+        'price' => random_int(20, 100)
+    ]);
+
+    $response = $this->actingAs($guest)
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
+
+    $response->assertStatus(Response::HTTP_FORBIDDEN);
+});
+
+test('user editor cannot access tour store', function () {
+    $this->seed(RoleSeeder::class);
+    $editor = \App\Models\User::factory()->create();
+    $role = Role::where('name', 'editor')->first();
+    $editor->roles()->sync([
+        $role->id
+    ]);
+    
+    $travel = Travel::factory(['is_public' => true])->create();
+    Tour::factory()->create();
+
+    $params = http_build_query([
+        'name' => 'test tour',
+        'starting_date' => now()->format('Y-m-d'),
+        'ending_date' => now()->addWeek()->format('Y-m-d'),
+        'price' => random_int(20, 100)
+    ]);
+
+    $response = $this->actingAs($editor)
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
+
+    $response->assertStatus(Response::HTTP_FORBIDDEN);
+});
+
+test('user admin can access tour store', function () {
+    $this->seed(RoleSeeder::class);
+    $admin = \App\Models\User::factory()->create();
+    $role = Role::where('name', 'admin')->first();
+    $admin->roles()->sync([
+        $role->id
+    ]);
+    
+    $travel = Travel::factory(['is_public' => true])->create();
+    Tour::factory()->create();
+
+    $params = http_build_query([
+        'name' => 'test tour',
+        'starting_date' => now()->format('Y-m-d'),
+        'ending_date' => now()->addWeek()->format('Y-m-d'),
+        'price' => random_int(20, 100)
+    ]);
+
+    $response = $this->actingAs($admin)
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
+
+    $response->assertStatus(Response::HTTP_OK);
+});
+
+test('tour store ending_date should be after starting_date', function () {
+    $this->seed(RoleSeeder::class);
+    $admin = \App\Models\User::factory()->create();
+    $role = Role::where('name', 'admin')->first();
+    $admin->roles()->sync([
+        $role->id
+    ]);
+    
+    $travel = Travel::factory(['is_public' => true])->create();
+    Tour::factory()->create();
+
+    $params = http_build_query([
+        'name' => 'test tour',
+        'starting_date' => now()->format('Y-m-d'),
+        'ending_date' => now()->subWeek()->format('Y-m-d'),
+        'price' => random_int(20, 100)
+    ]);
+
+    $response = $this->actingAs($admin)
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
 });

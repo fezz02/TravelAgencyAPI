@@ -37,7 +37,7 @@ Route::group(['prefix' => 'v1', 'as' => 'v1.'], function() {
             Route::get('{travel}/tours', [TourController::class, 'index'])->name('index');
 
             // Authenticated users only
-            Route::middleware('auth:sanctum')->group(function(){
+            Route::middleware(['auth:sanctum', 'role:admin'])->group(function(){
                 Route::post('{travel}/tours/store', [TourController::class, 'store'])->name('store');
             });
         });
