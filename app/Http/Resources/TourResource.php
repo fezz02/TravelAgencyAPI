@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TourResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -14,7 +15,6 @@ class TourResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -22,7 +22,5 @@ class TourResource extends JsonResource
             'ending_date' => $this->ending_date,
             'price' => number_format($this->price, 2)
         ];
-        
-        return parent::toArray($request);
     }
 }
