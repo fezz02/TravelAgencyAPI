@@ -29,7 +29,6 @@ class TravelController extends Controller
     
     public function update(UpdateTravelRequest $request, Travel $travel, TravelService $service)
     {
-        dd($travel);
         $travel = $service->update($request->validated(), $travel);
         return response()->json(TravelResource::make($travel), 200);
     }

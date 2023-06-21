@@ -36,17 +36,18 @@ class CreateUserCommand extends Command
         $user['password'] = bcrypt($this->secret('password of the new User'));
         $roleName = $this->choice('What\'s the user role?', ['admin', 'editor'], 1);
 
-        $roleId = Role::query()
-            ->limit(1)
-            ->where('name', $roleName)
-            ->firstOrFail()
-            ?->id;
+        // $roleId = Role::query()
+        //     ->limit(1)
+        //     ->where('name', $roleName)
+        //     ->firstOrFail()
+        //     ->id;
 
         if(!$this->validateUser($user)) return -1;
         
-        DB::transaction(function() use ($user, $roleId){
+        DB::transaction(function() use ($user, $roleName){
             $user = User::create($user);
-            $user = $user->roles()->attach($roleId);
+            //$user = $user->roles()->attach($roleId);
+            $user = $user->assignRole($roleName);
         });
 
         $this->info('user '.$user['name'].' with email '.$user['email'].' created successfully via artisan command');
