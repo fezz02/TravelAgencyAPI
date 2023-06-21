@@ -50,11 +50,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ryan.susanna@example.net
+                  example: karli.connelly@example.org
                 password:
                   type: string
                   description: ''
-                  example: \jHS|JSEIC~7<i19
+                  example: '*.l-X2'
               required:
                 - email
                 - password
@@ -81,178 +81,6 @@ paths:
       tags:
         - Endpoints
       security: []
-  /api/v1/travels:
-    get:
-      summary: 'GET Travels'
-      operationId: gETTravels
-      description: 'Returns paginated list of travels.'
-      parameters:
-        -
-          in: query
-          name: page
-          description: 'Page number.'
-          example: 1
-          required: false
-          schema:
-            type: integer
-            description: 'Page number.'
-            example: 1
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: '{"data":[{"id":"9958e389-5edf-48eb-8ecd-e058985cf3ce","name":"First travel", ...}}'
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/travels/store:
-    post:
-      summary: 'POST Travel'
-      operationId: pOSTTravel
-      description: 'Creates a new Travel record.'
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: '{"data":{"id":"996a36ca-2693-4901-9c55-7136e68d81d5","name":"My new travel 234","slug":"my-new-travel-234", ...}'
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The name has already been taken.'
-                  errors:
-                    name:
-                      - 'The name has already been taken.'
-                properties:
-                  message:
-                    type: string
-                    example: 'The name has already been taken.'
-                  errors:
-                    type: object
-                    properties:
-                      name:
-                        type: array
-                        example:
-                          - 'The name has already been taken.'
-                        items:
-                          type: string
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                is_public:
-                  type: boolean
-                  description: ''
-                  example: true
-                name:
-                  type: string
-                  description: ''
-                  example: qui
-                description:
-                  type: string
-                  description: ''
-                  example: et
-                number_of_days:
-                  type: string
-                  description: 'Must be at least 1 character. Must not be greater than 365 characters.'
-                  example: qjjl
-              required:
-                - is_public
-                - name
-                - description
-                - number_of_days
-  '/api/v1/travels/update/{travel_slug}':
-    put:
-      summary: 'PUT Travel'
-      operationId: pUTTravel
-      description: 'Updates new Travel record.'
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: '{"data":{"id":"996a36ca-2693-4901-9c55-7136e68d81d5","name":"My new travel 234", ...}'
-        422:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'The name has already been taken.'
-                  errors:
-                    name:
-                      - 'The name has already been taken.'
-                properties:
-                  message:
-                    type: string
-                    example: 'The name has already been taken.'
-                  errors:
-                    type: object
-                    properties:
-                      name:
-                        type: array
-                        example:
-                          - 'The name has already been taken.'
-                        items:
-                          type: string
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                is_public:
-                  type: boolean
-                  description: ''
-                  example: false
-                name:
-                  type: string
-                  description: ''
-                  example: necessitatibus
-                description:
-                  type: string
-                  description: ''
-                  example: est
-                number_of_days:
-                  type: string
-                  description: 'Must be at least 1 character. Must not be greater than 365 characters.'
-                  example: sguwqaxwopyhwnqhexkykn
-              required:
-                - is_public
-                - name
-                - description
-                - number_of_days
-    parameters:
-      -
-        in: path
-        name: travel_slug
-        description: 'The slug of the travel.'
-        example: maryland-quo-optio
-        required: true
-        schema:
-          type: string
   '/api/v1/travels/{travel_slug}/tours':
     get:
       summary: 'GET Travel Tours'
@@ -268,7 +96,7 @@ paths:
                 type: string
                 example: '{"data":[{"id":"9958e389-5edf-48eb-8ecd-e058985cf3ce","name":"Tour on Sunday","starting_date":"2023-06-11","ending_date":"2023-06-16", ...}'
       tags:
-        - 'Public endpoints'
+        - 'Tour endpoints'
       requestBody:
         required: false
         content:
@@ -332,7 +160,7 @@ paths:
       parameters: []
       responses: {  }
       tags:
-        - 'Public endpoints'
+        - 'Tour endpoints'
       requestBody:
         required: true
         content:
@@ -343,25 +171,197 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: odio
+                  example: dignissimos
                 starting_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-06-21T09:31:09'
+                  example: '2023-06-21T10:00:38'
                 ending_date:
                   type: string
                   description: 'Must be a valid date. Must be a date after or equal to <code>starting_date</code>.'
-                  example: '2059-07-14'
+                  example: '2096-05-22'
                 price:
                   type: number
                   description: ''
-                  example: 1222948.271
+                  example: 257.2407
               required:
                 - name
                 - starting_date
                 - ending_date
                 - price
       security: []
+    parameters:
+      -
+        in: path
+        name: travel_slug
+        description: 'The slug of the travel.'
+        example: maryland-quo-optio
+        required: true
+        schema:
+          type: string
+  /api/v1/travels:
+    get:
+      summary: 'GET Travels'
+      operationId: gETTravels
+      description: 'Returns paginated list of travels.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{"data":[{"id":"9958e389-5edf-48eb-8ecd-e058985cf3ce","name":"First travel", ...}}'
+      tags:
+        - 'Travel endpoints'
+      security: []
+  /api/v1/travels/store:
+    post:
+      summary: 'POST Travel'
+      operationId: pOSTTravel
+      description: 'Creates a new Travel record.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{"data":{"id":"996a36ca-2693-4901-9c55-7136e68d81d5","name":"My new travel 234","slug":"my-new-travel-234", ...}'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The name has already been taken.'
+                  errors:
+                    name:
+                      - 'The name has already been taken.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The name has already been taken.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 'The name has already been taken.'
+                        items:
+                          type: string
+      tags:
+        - 'Travel endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_public:
+                  type: boolean
+                  description: ''
+                  example: true
+                name:
+                  type: string
+                  description: ''
+                  example: consequuntur
+                description:
+                  type: string
+                  description: ''
+                  example: qui
+                number_of_days:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 365 characters.'
+                  example: chvewctaw
+              required:
+                - is_public
+                - name
+                - description
+                - number_of_days
+  '/api/v1/travels/update/{travel_slug}':
+    put:
+      summary: 'PUT Travel'
+      operationId: pUTTravel
+      description: 'Updates new Travel record.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{"data":{"id":"996a36ca-2693-4901-9c55-7136e68d81d5","name":"My new travel 234", ...}'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The name has already been taken.'
+                  errors:
+                    name:
+                      - 'The name has already been taken.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The name has already been taken.'
+                  errors:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 'The name has already been taken.'
+                        items:
+                          type: string
+      tags:
+        - 'Travel endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_public:
+                  type: boolean
+                  description: ''
+                  example: true
+                name:
+                  type: string
+                  description: ''
+                  example: dignissimos
+                description:
+                  type: string
+                  description: ''
+                  example: magni
+                number_of_days:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 365 characters.'
+                  example: wrbrmrwct
+              required:
+                - is_public
+                - name
+                - description
+                - number_of_days
     parameters:
       -
         in: path
@@ -379,5 +379,8 @@ tags:
     name: Endpoints
     description: ''
   -
-    name: 'Public endpoints'
+    name: 'Tour endpoints'
+    description: ''
+  -
+    name: 'Travel endpoints'
     description: ''

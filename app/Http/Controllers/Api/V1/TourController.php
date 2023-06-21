@@ -10,7 +10,7 @@ use App\Models\Travel;
 use App\Services\TourService;
 
 /**
- * @group Public endpoints
+ * @group Tour endpoints
  */
 class TourController extends Controller
 {

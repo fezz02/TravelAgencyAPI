@@ -9,6 +9,9 @@ use App\Http\Resources\TravelResource;
 use App\Models\Travel;
 use App\Services\TravelService;
 
+/**
+ * @group Travel endpoints
+ */
 class TravelController extends Controller
 {
     /**

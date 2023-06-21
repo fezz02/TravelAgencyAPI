@@ -28,19 +28,19 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ryan.susanna@example.net
+        example: karli.connelly@example.org
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: \jHS|JSEIC~7<i19
+        example: '*.l-X2'
         type: string
         custom: []
     cleanBodyParameters:
-      email: ryan.susanna@example.net
-      password: \jHS|JSEIC~7<i19
+      email: karli.connelly@example.org
+      password: '*.l-X2'
     fileParameters: []
     responses:
       -

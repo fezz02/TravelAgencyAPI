@@ -84,27 +84,34 @@
                                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
                                 <a href="#endpoints-GETapi-user">GET api/user</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-travels">
-                                <a href="#endpoints-GETapi-v1-travels">GET Travels</a>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-tour-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="tour-endpoints">
+                    <a href="#tour-endpoints">Tour endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-tour-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="tour-endpoints-GETapi-v1-travels--travel_slug--tours">
+                                <a href="#tour-endpoints-GETapi-v1-travels--travel_slug--tours">GET Travel Tours</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-travels-store">
-                                <a href="#endpoints-POSTapi-v1-travels-store">POST Travel</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-v1-travels-update--travel_slug-">
-                                <a href="#endpoints-PUTapi-v1-travels-update--travel_slug-">PUT Travel</a>
+                                                                                <li class="tocify-item level-2" data-unique="tour-endpoints-POSTapi-v1-travels--travel_slug--tours-store">
+                                <a href="#tour-endpoints-POSTapi-v1-travels--travel_slug--tours-store">POST api/v1/travels/{travel_slug}/tours/store</a>
                             </li>
                                                                         </ul>
                             </ul>
-                    <ul id="tocify-header-public-endpoints" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="public-endpoints">
-                    <a href="#public-endpoints">Public endpoints</a>
+                    <ul id="tocify-header-travel-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="travel-endpoints">
+                    <a href="#travel-endpoints">Travel endpoints</a>
                 </li>
-                                    <ul id="tocify-subheader-public-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="public-endpoints-GETapi-v1-travels--travel_slug--tours">
-                                <a href="#public-endpoints-GETapi-v1-travels--travel_slug--tours">GET Travel Tours</a>
+                                    <ul id="tocify-subheader-travel-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="travel-endpoints-GETapi-v1-travels">
+                                <a href="#travel-endpoints-GETapi-v1-travels">GET Travels</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="public-endpoints-POSTapi-v1-travels--travel_slug--tours-store">
-                                <a href="#public-endpoints-POSTapi-v1-travels--travel_slug--tours-store">POST api/v1/travels/{travel_slug}/tours/store</a>
+                                                                                <li class="tocify-item level-2" data-unique="travel-endpoints-POSTapi-v1-travels-store">
+                                <a href="#travel-endpoints-POSTapi-v1-travels-store">POST Travel</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="travel-endpoints-PUTapi-v1-travels-update--travel_slug-">
+                                <a href="#travel-endpoints-PUTapi-v1-travels-update--travel_slug-">PUT Travel</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -157,8 +164,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"ryan.susanna@example.net\",
-    \"password\": \"\\\\jHS|JSEIC~7&lt;i19\"
+    \"email\": \"karli.connelly@example.org\",
+    \"password\": \"*.l-X2\"
 }"
 </code></pre></div>
 
@@ -174,8 +181,8 @@ const headers = {
 };
 
 let body = {
-    "email": "ryan.susanna@example.net",
-    "password": "\\jHS|JSEIC~7&lt;i19"
+    "email": "karli.connelly@example.org",
+    "password": "*.l-X2"
 };
 
 fetch(url, {
@@ -282,10 +289,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-v1-login"
-               value="ryan.susanna@example.net"
+               value="karli.connelly@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>ryan.susanna@example.net</code></p>
+<p>Must be a valid email address. Example: <code>karli.connelly@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -293,10 +300,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-v1-login"
-               value="\jHS|JSEIC~7<i19"
+               value="*.l-X2"
                data-component="body">
     <br>
-<p>Example: <code>\jHS|JSEIC~7&lt;i19</code></p>
+<p>Example: <code>*.l-X2</code></p>
         </div>
         </form>
 
@@ -428,556 +435,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-v1-travels">GET Travels</h2>
-
-<p>
-</p>
-
-<p>Returns paginated list of travels.</p>
-
-<span id="example-requests-GETapi-v1-travels">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/travels?page=1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/travels"
-);
-
-const params = {
-    "page": "1",
-};
-Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-travels">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{&quot;data&quot;:[{&quot;id&quot;:&quot;9958e389-5edf-48eb-8ecd-e058985cf3ce&quot;,&quot;name&quot;:&quot;First travel&quot;, ...}}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-travels" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-travels"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-travels"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-travels" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-travels">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-travels" data-method="GET"
-      data-path="api/v1/travels"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-travels', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-travels"
-                    onclick="tryItOut('GETapi-v1-travels');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-travels"
-                    onclick="cancelTryOut('GETapi-v1-travels');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-travels"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/travels</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="GETapi-v1-travels"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="GETapi-v1-travels"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
-                                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="number" style="display: none"
-               name="page"                data-endpoint="GETapi-v1-travels"
-               value="1"
-               data-component="query">
-    <br>
-<p>Page number. Example: <code>1</code></p>
-            </div>
-                </form>
-
-                    <h2 id="endpoints-POSTapi-v1-travels-store">POST Travel</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>Creates a new Travel record.</p>
-
-<span id="example-requests-POSTapi-v1-travels-store">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/travels/store" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"is_public\": true,
-    \"name\": \"qui\",
-    \"description\": \"et\",
-    \"number_of_days\": \"qjjl\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/travels/store"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "is_public": true,
-    "name": "qui",
-    "description": "et",
-    "number_of_days": "qjjl"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-travels-store">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{&quot;data&quot;:{&quot;id&quot;:&quot;996a36ca-2693-4901-9c55-7136e68d81d5&quot;,&quot;name&quot;:&quot;My new travel 234&quot;,&quot;slug&quot;:&quot;my-new-travel-234&quot;, ...}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The name has already been taken.&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;The name has already been taken.&quot;
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-travels-store" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-travels-store"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-travels-store"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-travels-store" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-travels-store">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-travels-store" data-method="POST"
-      data-path="api/v1/travels/store"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-travels-store', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-travels-store"
-                    onclick="tryItOut('POSTapi-v1-travels-store');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-travels-store"
-                    onclick="cancelTryOut('POSTapi-v1-travels-store');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-travels-store"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/travels/store</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-v1-travels-store"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-v1-travels-store"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>is_public</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
- &nbsp;
-                <label data-endpoint="POSTapi-v1-travels-store" style="display: none">
-            <input type="radio" name="is_public"
-                   value="true"
-                   data-endpoint="POSTapi-v1-travels-store"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTapi-v1-travels-store" style="display: none">
-            <input type="radio" name="is_public"
-                   value="false"
-                   data-endpoint="POSTapi-v1-travels-store"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>true</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="name"                data-endpoint="POSTapi-v1-travels-store"
-               value="qui"
-               data-component="body">
-    <br>
-<p>Example: <code>qui</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="description"                data-endpoint="POSTapi-v1-travels-store"
-               value="et"
-               data-component="body">
-    <br>
-<p>Example: <code>et</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>number_of_days</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="number_of_days"                data-endpoint="POSTapi-v1-travels-store"
-               value="qjjl"
-               data-component="body">
-    <br>
-<p>Must be at least 1 character. Must not be greater than 365 characters. Example: <code>qjjl</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-PUTapi-v1-travels-update--travel_slug-">PUT Travel</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>Updates new Travel record.</p>
-
-<span id="example-requests-PUTapi-v1-travels-update--travel_slug-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/v1/travels/update/maryland-quo-optio" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"is_public\": false,
-    \"name\": \"necessitatibus\",
-    \"description\": \"est\",
-    \"number_of_days\": \"sguwqaxwopyhwnqhexkykn\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/travels/update/maryland-quo-optio"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "is_public": false,
-    "name": "necessitatibus",
-    "description": "est",
-    "number_of_days": "sguwqaxwopyhwnqhexkykn"
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-v1-travels-update--travel_slug-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{&quot;data&quot;:{&quot;id&quot;:&quot;996a36ca-2693-4901-9c55-7136e68d81d5&quot;,&quot;name&quot;:&quot;My new travel 234&quot;, ...}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The name has already been taken.&quot;,
-    &quot;errors&quot;: {
-        &quot;name&quot;: [
-            &quot;The name has already been taken.&quot;
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PUTapi-v1-travels-update--travel_slug-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-v1-travels-update--travel_slug-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-v1-travels-update--travel_slug-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PUTapi-v1-travels-update--travel_slug-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-v1-travels-update--travel_slug-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PUTapi-v1-travels-update--travel_slug-" data-method="PUT"
-      data-path="api/v1/travels/update/{travel_slug}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-travels-update--travel_slug-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-v1-travels-update--travel_slug-"
-                    onclick="tryItOut('PUTapi-v1-travels-update--travel_slug-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-v1-travels-update--travel_slug-"
-                    onclick="cancelTryOut('PUTapi-v1-travels-update--travel_slug-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-v1-travels-update--travel_slug-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/v1/travels/update/{travel_slug}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>travel_slug</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="travel_slug"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-               value="maryland-quo-optio"
-               data-component="url">
-    <br>
-<p>The slug of the travel. Example: <code>maryland-quo-optio</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>is_public</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
- &nbsp;
-                <label data-endpoint="PUTapi-v1-travels-update--travel_slug-" style="display: none">
-            <input type="radio" name="is_public"
-                   value="true"
-                   data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-v1-travels-update--travel_slug-" style="display: none">
-            <input type="radio" name="is_public"
-                   value="false"
-                   data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>false</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="name"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-               value="necessitatibus"
-               data-component="body">
-    <br>
-<p>Example: <code>necessitatibus</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="description"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-               value="est"
-               data-component="body">
-    <br>
-<p>Example: <code>est</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>number_of_days</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="number_of_days"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
-               value="sguwqaxwopyhwnqhexkykn"
-               data-component="body">
-    <br>
-<p>Must be at least 1 character. Must not be greater than 365 characters. Example: <code>sguwqaxwopyhwnqhexkykn</code></p>
-        </div>
-        </form>
-
-                <h1 id="public-endpoints">Public endpoints</h1>
+                <h1 id="tour-endpoints">Tour endpoints</h1>
 
     
 
-                                <h2 id="public-endpoints-GETapi-v1-travels--travel_slug--tours">GET Travel Tours</h2>
+                                <h2 id="tour-endpoints-GETapi-v1-travels--travel_slug--tours">GET Travel Tours</h2>
 
 <p>
 </p>
@@ -1216,7 +678,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="public-endpoints-POSTapi-v1-travels--travel_slug--tours-store">POST api/v1/travels/{travel_slug}/tours/store</h2>
+                    <h2 id="tour-endpoints-POSTapi-v1-travels--travel_slug--tours-store">POST api/v1/travels/{travel_slug}/tours/store</h2>
 
 <p>
 </p>
@@ -1233,10 +695,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"odio\",
-    \"starting_date\": \"2023-06-21T09:31:09\",
-    \"ending_date\": \"2059-07-14\",
-    \"price\": 1222948.271
+    \"name\": \"dignissimos\",
+    \"starting_date\": \"2023-06-21T10:00:38\",
+    \"ending_date\": \"2096-05-22\",
+    \"price\": 257.2407
 }"
 </code></pre></div>
 
@@ -1252,10 +714,10 @@ const headers = {
 };
 
 let body = {
-    "name": "odio",
-    "starting_date": "2023-06-21T09:31:09",
-    "ending_date": "2059-07-14",
-    "price": 1222948.271
+    "name": "dignissimos",
+    "starting_date": "2023-06-21T10:00:38",
+    "ending_date": "2096-05-22",
+    "price": 257.2407
 };
 
 fetch(url, {
@@ -1356,10 +818,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-v1-travels--travel_slug--tours-store"
-               value="odio"
+               value="dignissimos"
                data-component="body">
     <br>
-<p>Example: <code>odio</code></p>
+<p>Example: <code>dignissimos</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>starting_date</code></b>&nbsp;&nbsp;
@@ -1367,10 +829,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="starting_date"                data-endpoint="POSTapi-v1-travels--travel_slug--tours-store"
-               value="2023-06-21T09:31:09"
+               value="2023-06-21T10:00:38"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2023-06-21T09:31:09</code></p>
+<p>Must be a valid date. Example: <code>2023-06-21T10:00:38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ending_date</code></b>&nbsp;&nbsp;
@@ -1378,10 +840,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="ending_date"                data-endpoint="POSTapi-v1-travels--travel_slug--tours-store"
-               value="2059-07-14"
+               value="2096-05-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after or equal to <code>starting_date</code>. Example: <code>2059-07-14</code></p>
+<p>Must be a valid date. Must be a date after or equal to <code>starting_date</code>. Example: <code>2096-05-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -1389,10 +851,559 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="price"                data-endpoint="POSTapi-v1-travels--travel_slug--tours-store"
-               value="1222948.271"
+               value="257.2407"
                data-component="body">
     <br>
-<p>Example: <code>1222948.271</code></p>
+<p>Example: <code>257.2407</code></p>
+        </div>
+        </form>
+
+                <h1 id="travel-endpoints">Travel endpoints</h1>
+
+    
+
+                                <h2 id="travel-endpoints-GETapi-v1-travels">GET Travels</h2>
+
+<p>
+</p>
+
+<p>Returns paginated list of travels.</p>
+
+<span id="example-requests-GETapi-v1-travels">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/travels?page=1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/travels"
+);
+
+const params = {
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-travels">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{&quot;data&quot;:[{&quot;id&quot;:&quot;9958e389-5edf-48eb-8ecd-e058985cf3ce&quot;,&quot;name&quot;:&quot;First travel&quot;, ...}}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-travels" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-travels"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-travels"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-travels" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-travels">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-travels" data-method="GET"
+      data-path="api/v1/travels"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-travels', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-travels"
+                    onclick="tryItOut('GETapi-v1-travels');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-travels"
+                    onclick="cancelTryOut('GETapi-v1-travels');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-travels"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/travels</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-v1-travels"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-v1-travels"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="page"                data-endpoint="GETapi-v1-travels"
+               value="1"
+               data-component="query">
+    <br>
+<p>Page number. Example: <code>1</code></p>
+            </div>
+                </form>
+
+                    <h2 id="travel-endpoints-POSTapi-v1-travels-store">POST Travel</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Creates a new Travel record.</p>
+
+<span id="example-requests-POSTapi-v1-travels-store">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/travels/store" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"is_public\": true,
+    \"name\": \"consequuntur\",
+    \"description\": \"qui\",
+    \"number_of_days\": \"chvewctaw\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/travels/store"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "is_public": true,
+    "name": "consequuntur",
+    "description": "qui",
+    "number_of_days": "chvewctaw"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-travels-store">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{&quot;data&quot;:{&quot;id&quot;:&quot;996a36ca-2693-4901-9c55-7136e68d81d5&quot;,&quot;name&quot;:&quot;My new travel 234&quot;,&quot;slug&quot;:&quot;my-new-travel-234&quot;, ...}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The name has already been taken.&quot;,
+    &quot;errors&quot;: {
+        &quot;name&quot;: [
+            &quot;The name has already been taken.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-travels-store" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-travels-store"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-travels-store"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-travels-store" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-travels-store">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-travels-store" data-method="POST"
+      data-path="api/v1/travels/store"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-travels-store', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-travels-store"
+                    onclick="tryItOut('POSTapi-v1-travels-store');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-travels-store"
+                    onclick="cancelTryOut('POSTapi-v1-travels-store');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-travels-store"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/travels/store</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-v1-travels-store"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-v1-travels-store"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_public</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-travels-store" style="display: none">
+            <input type="radio" name="is_public"
+                   value="true"
+                   data-endpoint="POSTapi-v1-travels-store"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-travels-store" style="display: none">
+            <input type="radio" name="is_public"
+                   value="false"
+                   data-endpoint="POSTapi-v1-travels-store"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="name"                data-endpoint="POSTapi-v1-travels-store"
+               value="consequuntur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequuntur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="description"                data-endpoint="POSTapi-v1-travels-store"
+               value="qui"
+               data-component="body">
+    <br>
+<p>Example: <code>qui</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>number_of_days</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="number_of_days"                data-endpoint="POSTapi-v1-travels-store"
+               value="chvewctaw"
+               data-component="body">
+    <br>
+<p>Must be at least 1 character. Must not be greater than 365 characters. Example: <code>chvewctaw</code></p>
+        </div>
+        </form>
+
+                    <h2 id="travel-endpoints-PUTapi-v1-travels-update--travel_slug-">PUT Travel</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Updates new Travel record.</p>
+
+<span id="example-requests-PUTapi-v1-travels-update--travel_slug-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/api/v1/travels/update/maryland-quo-optio" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"is_public\": true,
+    \"name\": \"dignissimos\",
+    \"description\": \"magni\",
+    \"number_of_days\": \"wrbrmrwct\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/travels/update/maryland-quo-optio"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "is_public": true,
+    "name": "dignissimos",
+    "description": "magni",
+    "number_of_days": "wrbrmrwct"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-travels-update--travel_slug-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{&quot;data&quot;:{&quot;id&quot;:&quot;996a36ca-2693-4901-9c55-7136e68d81d5&quot;,&quot;name&quot;:&quot;My new travel 234&quot;, ...}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The name has already been taken.&quot;,
+    &quot;errors&quot;: {
+        &quot;name&quot;: [
+            &quot;The name has already been taken.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-travels-update--travel_slug-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-travels-update--travel_slug-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-travels-update--travel_slug-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-travels-update--travel_slug-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-travels-update--travel_slug-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-travels-update--travel_slug-" data-method="PUT"
+      data-path="api/v1/travels/update/{travel_slug}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-travels-update--travel_slug-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-travels-update--travel_slug-"
+                    onclick="tryItOut('PUTapi-v1-travels-update--travel_slug-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-travels-update--travel_slug-"
+                    onclick="cancelTryOut('PUTapi-v1-travels-update--travel_slug-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-travels-update--travel_slug-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/travels/update/{travel_slug}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>travel_slug</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="travel_slug"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+               value="maryland-quo-optio"
+               data-component="url">
+    <br>
+<p>The slug of the travel. Example: <code>maryland-quo-optio</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_public</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-travels-update--travel_slug-" style="display: none">
+            <input type="radio" name="is_public"
+                   value="true"
+                   data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-travels-update--travel_slug-" style="display: none">
+            <input type="radio" name="is_public"
+                   value="false"
+                   data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="name"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+               value="dignissimos"
+               data-component="body">
+    <br>
+<p>Example: <code>dignissimos</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="description"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+               value="magni"
+               data-component="body">
+    <br>
+<p>Example: <code>magni</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>number_of_days</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="number_of_days"                data-endpoint="PUTapi-v1-travels-update--travel_slug-"
+               value="wrbrmrwct"
+               data-component="body">
+    <br>
+<p>Must be at least 1 character. Must not be greater than 365 characters. Example: <code>wrbrmrwct</code></p>
         </div>
         </form>
 
