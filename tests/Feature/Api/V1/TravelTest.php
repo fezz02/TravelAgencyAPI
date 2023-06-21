@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Role;
-use \App\Models\Travel;
+use App\Models\Travel;
 use Symfony\Component\HttpFoundation\Response;
 
 test('guest can access travels index', function () {
@@ -36,7 +35,7 @@ test('user guest cannot access travel store', function () {
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $response = $this->actingAs($guest)
@@ -55,7 +54,7 @@ test('user editor cannot access travel store', function () {
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $response = $this->actingAs($editor)
@@ -74,7 +73,7 @@ test('user admin can access travel store', function () {
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $response = $this->actingAs($admin)
@@ -93,7 +92,7 @@ test('created new travel is in database', function () {
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $response = $this->actingAs($admin)
@@ -104,7 +103,6 @@ test('created new travel is in database', function () {
     $response->assertJsonFragment(['name' => 'travel test']);
 });
 
-
 test('user guest role cannot access travel update', function () {
     $this->seed(RoleSeeder::class);
     $guest = \App\Models\User::factory()->create();
@@ -114,7 +112,7 @@ test('user guest role cannot access travel update', function () {
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $travel = Travel::factory()->create();
@@ -131,12 +129,11 @@ test('user editor can access travel update', function () {
     $editor->roles()->sync([]);
     $editor->assignRole('editor');
 
-
     $params = http_build_query([
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $travel = Travel::factory()->create();
@@ -157,7 +154,7 @@ test('user admin can access travel update', function () {
         'is_public' => true,
         'name' => 'travel test',
         'description' => 'a test travel',
-        'number_of_days' => random_int(1, 14)
+        'number_of_days' => random_int(1, 14),
     ]);
 
     $travel = Travel::factory()->create();

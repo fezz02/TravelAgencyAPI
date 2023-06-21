@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
 use App\Models\Role;
+use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
 {
@@ -17,9 +15,9 @@ class RoleSeeder extends Seeder
 
         $roleNames = collect([
             'editor',
-            'admin'
+            'admin',
         ]);
 
-        $roleNames->each(fn($name) => Role::create(['name' => $name]));
+        $roleNames->each(fn ($name) => Role::create(['name' => $name]));
     }
 }

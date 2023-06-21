@@ -1,8 +1,7 @@
 <?php
 
-use App\Models\Role;
-use \App\Models\Travel;
-use \App\Models\Tour;
+use App\Models\Tour;
+use App\Models\Travel;
 use Database\Seeders\RoleSeeder;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,7 +15,6 @@ test('guest can access tours using public travel slug', function () {
     $response->assertStatus(200);
 });
 
-
 test('tours list is paginated correctly', function () {
     Travel::factory(config('crud.pagination.per_page.default') + 1)->create(['is_public' => true]);
     $response = $this->get(route('v1.travels.index'));
@@ -29,7 +27,7 @@ test('tours list is paginated correctly', function () {
 test('guest can see formatted tours price', function () {
     $travel = Travel::factory(['is_public' => true])->create();
     Tour::factory()->create([
-        'price' => 241.65
+        'price' => 241.65,
     ]);
 
     $response = $this->get(route('v1.travels.tours.index', ['travel' => $travel->slug]));
@@ -41,10 +39,10 @@ test('guest can see formatted tours price', function () {
 test('tours can be filtered by price', function () {
     $travel = Travel::factory(['is_public' => true])->create();
     Tour::factory()->create([
-        'price' => 85
+        'price' => 85,
     ]);
     Tour::factory(10)->create([
-        'price' => random_int(100, 500)
+        'price' => random_int(100, 500),
     ]);
 
     $params = http_build_query([
@@ -61,7 +59,7 @@ test('tours can be filtered by date', function () {
     $travel = Travel::factory(['is_public' => true])->create();
     $tour = Tour::factory()->create();
     Tour::factory(10)->create([
-        'price' => random_int(100, 500)
+        'price' => random_int(100, 500),
     ]);
 
     $params = http_build_query([
@@ -73,7 +71,7 @@ test('tours can be filtered by date', function () {
     $response->assertStatus(Response::HTTP_OK);
     $response->assertJsonFragment([
         'starting_date' => $tour->starting_date,
-        'ending_date' => $tour->ending_date
+        'ending_date' => $tour->ending_date,
     ]);
 });
 
@@ -97,7 +95,7 @@ test('unauthenticated user cannot access tour store', function () {
         'name' => 'test tour',
         'starting_date' => now()->format('Y-m-d'),
         'ending_date' => now()->addWeek()->format('Y-m-d'),
-        'price' => random_int(20, 100)
+        'price' => random_int(20, 100),
     ]);
 
     $response = $this->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
@@ -109,7 +107,7 @@ test('user guest cannot access tour store', function () {
     $this->seed(RoleSeeder::class);
     $guest = \App\Models\User::factory()->create();
     $guest->roles()->sync([]);
-    
+
     $travel = Travel::factory(['is_public' => true])->create();
     Tour::factory()->create();
 
@@ -117,7 +115,7 @@ test('user guest cannot access tour store', function () {
         'name' => 'test tour',
         'starting_date' => now()->format('Y-m-d'),
         'ending_date' => now()->addWeek()->format('Y-m-d'),
-        'price' => random_int(20, 100)
+        'price' => random_int(20, 100),
     ]);
 
     $response = $this->actingAs($guest)
@@ -139,7 +137,7 @@ test('user editor cannot access tour store', function () {
         'name' => 'test tour',
         'starting_date' => now()->format('Y-m-d'),
         'ending_date' => now()->addWeek()->format('Y-m-d'),
-        'price' => random_int(20, 100)
+        'price' => random_int(20, 100),
     ]);
 
     $response = $this->actingAs($editor)
@@ -161,7 +159,7 @@ test('user admin can access tour store', function () {
         'name' => 'test tour',
         'starting_date' => now()->format('Y-m-d'),
         'ending_date' => now()->addWeek()->format('Y-m-d'),
-        'price' => random_int(20, 100)
+        'price' => random_int(20, 100),
     ]);
 
     $response = $this->actingAs($admin)
@@ -183,7 +181,7 @@ test('tour store ending_date should be after starting_date', function () {
         'name' => 'test tour',
         'starting_date' => now()->format('Y-m-d'),
         'ending_date' => now()->subWeek()->format('Y-m-d'),
-        'price' => random_int(20, 100)
+        'price' => random_int(20, 100),
     ]);
 
     $response = $this->actingAs($admin)
@@ -197,7 +195,7 @@ test('created new tour is in database', function () {
     $admin = \App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
-    
+
     $travel = Travel::factory(['is_public' => true])->create();
     Tour::factory()->create();
 
@@ -205,7 +203,7 @@ test('created new tour is in database', function () {
         'name' => 'test tour',
         'starting_date' => now()->format('Y-m-d'),
         'ending_date' => now()->subWeek()->format('Y-m-d'),
-        'price' => random_int(20, 100)
+        'price' => random_int(20, 100),
     ]);
 
     $response = $this->actingAs($admin)

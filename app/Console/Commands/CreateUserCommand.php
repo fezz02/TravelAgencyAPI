@@ -42,9 +42,11 @@ class CreateUserCommand extends Command
         //     ->firstOrFail()
         //     ->id;
 
-        if(!$this->validateUser($user)) return -1;
-        
-        DB::transaction(function() use ($user, $roleName){
+        if (! $this->validateUser($user)) {
+            return -1;
+        }
+
+        DB::transaction(function () use ($user, $roleName) {
             $user = User::create($user);
             //$user = $user->roles()->attach($roleId);
             $user = $user->assignRole($roleName);
@@ -65,10 +67,10 @@ class CreateUserCommand extends Command
             foreach ($validator->errors()->all() as $error) {
                 $this->error($error);
             }
-         
+
             return false;
         }
+
         return true;
     }
 }
-

@@ -25,7 +25,7 @@ class UpdateTravelRequest extends FormRequest
             'is_public' => ['required', 'sometimes', 'boolean'],
             'name' => ['required', 'sometimes'],
             'description' => ['required', 'sometimes'],
-            'number_of_days' => ['required', 'sometimes', 'min:1', 'max:365']
+            'number_of_days' => ['required', 'sometimes', 'min:1', 'max:365'],
         ];
     }
 }

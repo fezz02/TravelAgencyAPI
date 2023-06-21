@@ -15,10 +15,11 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if(!auth()->check())
-            abort(Response::HTTP_UNAUTHORIZED, "User is not logged in.");
+        if (! auth()->check()) {
+            abort(Response::HTTP_UNAUTHORIZED, 'User is not logged in.');
+        }
 
-        if(!auth()->user()->roles()->where('name', $role)->first()){
+        if (! auth()->user()->roles()->where('name', $role)->first()) {
             abort(Response::HTTP_FORBIDDEN, "User doesn't have permission to access this resource.");
         }
 

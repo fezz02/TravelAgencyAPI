@@ -7,7 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TourResource extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
@@ -20,7 +19,7 @@ class TourResource extends JsonResource
             'name' => $this->name,
             'starting_date' => $this->starting_date,
             'ending_date' => $this->ending_date,
-            'price' => number_format($this->price, 2)
+            'price' => number_format($this->price, 2),
         ];
     }
 }

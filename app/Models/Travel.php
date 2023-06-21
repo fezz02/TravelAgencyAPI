@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\RespectsPrivacy;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use App\Traits\RespectsPrivacy;
 
 class Travel extends Model
 {
@@ -32,15 +32,15 @@ class Travel extends Model
 
     protected $casts = [
         'is_public' => 'boolean',
-        'number_of_days' => 'int'
+        'number_of_days' => 'int',
     ];
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
 
@@ -52,10 +52,10 @@ class Travel extends Model
     public function numberOfNights(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->number_of_days - 1
+            get: fn ($value) => $this->number_of_days - 1
         );
     }
-    
+
     public function tours(): HasMany
     {
         return $this->hasMany(Tour::class);
