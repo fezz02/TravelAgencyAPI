@@ -15,7 +15,7 @@ class TravelResource extends JsonResource
     public function toArray(Request $request): array
     {
         return array_merge(parent::toArray($request), [
-            'number_of_nights' => $this->number_of_nights
+            'number_of_nights' => $this->number_of_nights,
         ]);
     }
 }

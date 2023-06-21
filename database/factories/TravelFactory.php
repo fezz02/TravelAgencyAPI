@@ -20,7 +20,7 @@ class TravelFactory extends Factory
             'is_public' => fake()->boolean(),
             'name' => fake()->state().': '.fake()->sentence(2),
             'description' => fake()->text(500),
-            'number_of_days' => fake()->numberBetween(1, 365)
+            'number_of_days' => fake()->numberBetween(1, 365),
         ];
     }
 }

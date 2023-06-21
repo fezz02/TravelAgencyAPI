@@ -4,8 +4,8 @@ namespace App\Services;
 
 use App\Models\Travel;
 
-class TravelService {
-
+class TravelService
+{
     public function store(array $fields): Travel
     {
         return Travel::create($fields);
@@ -14,6 +14,7 @@ class TravelService {
     public function update(array $fields, Travel $travel): Travel
     {
         $travel->update($fields);
+
         return $travel->fresh();
     }
 }

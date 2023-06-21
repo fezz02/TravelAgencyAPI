@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Travel;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -36,14 +35,6 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
-        });
-
-        Route::bind('slug', function (string $slug) {
-            $travel = Travel::query()
-                ->where('slug', $slug)
-                ->firstOrFail();
-    
-            return $travel;
         });
     }
 }

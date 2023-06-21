@@ -23,9 +23,9 @@ class StoreTravelRequest extends FormRequest
     {
         return [
             'is_public' => ['required', 'boolean'],
-            'name' => ['required'],
+            'name' => ['required', 'unique:travels'],
             'description' => ['required'],
-            'number_of_days' => ['required', 'min:1', 'max:365']
+            'number_of_days' => ['required', 'min:1', 'max:365'],
         ];
     }
 }

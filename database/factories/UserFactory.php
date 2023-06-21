@@ -46,13 +46,12 @@ class UserFactory extends Factory
         return $this->afterCreating(function (User $user) {
 
             $role = Role::query()
-                ->select(['id'])
+                ->select(['name'])
                 ->limit(1)
                 ->inRandomOrder()
                 ->first()
-                ->id;
-
-            $user->roles()->attach($role);
+                ->name;
+            $user->assignRole($role);
         });
     }
 }

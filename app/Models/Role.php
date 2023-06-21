@@ -11,11 +11,11 @@ class Role extends Model
     use HasUuids;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     protected $hidden = [
-        'id'
+        'id',
     ];
 
     public function users(): BelongsToMany
