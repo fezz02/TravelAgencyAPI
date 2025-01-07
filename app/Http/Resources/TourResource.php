@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TourResource extends JsonResource
+final class TourResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

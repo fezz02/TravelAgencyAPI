@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Travel;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,7 +30,7 @@ test('travels list shows only public travels', function () {
 
 test('user guest cannot access travel store', function () {
     $this->seed(RoleSeeder::class);
-    $guest = \App\Models\User::factory()->create();
+    $guest = App\Models\User::factory()->create();
     $guest->roles()->sync([]);
 
     $params = http_build_query([
@@ -46,7 +48,7 @@ test('user guest cannot access travel store', function () {
 
 test('user editor cannot access travel store', function () {
     $this->seed(RoleSeeder::class);
-    $editor = \App\Models\User::factory()->create();
+    $editor = App\Models\User::factory()->create();
     $editor->roles()->sync([]);
     $editor->assignRole('editor');
 
@@ -65,7 +67,7 @@ test('user editor cannot access travel store', function () {
 
 test('user admin can access travel store', function () {
     $this->seed(RoleSeeder::class);
-    $admin = \App\Models\User::factory()->create();
+    $admin = App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
 
@@ -84,7 +86,7 @@ test('user admin can access travel store', function () {
 
 test('created new travel is in database', function () {
     $this->seed(RoleSeeder::class);
-    $admin = \App\Models\User::factory()->create();
+    $admin = App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
 
@@ -105,7 +107,7 @@ test('created new travel is in database', function () {
 
 test('user guest role cannot access travel update', function () {
     $this->seed(RoleSeeder::class);
-    $guest = \App\Models\User::factory()->create();
+    $guest = App\Models\User::factory()->create();
     $guest->roles()->sync([]);
 
     $params = http_build_query([
@@ -125,7 +127,7 @@ test('user guest role cannot access travel update', function () {
 
 test('user editor can access travel update', function () {
     $this->seed(RoleSeeder::class);
-    $editor = \App\Models\User::factory()->create();
+    $editor = App\Models\User::factory()->create();
     $editor->roles()->sync([]);
     $editor->assignRole('editor');
 
@@ -146,7 +148,7 @@ test('user editor can access travel update', function () {
 
 test('user admin can access travel update', function () {
     $this->seed(RoleSeeder::class);
-    $admin = \App\Models\User::factory()->create();
+    $admin = App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
 

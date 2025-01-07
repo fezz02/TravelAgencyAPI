@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * @group Auth endpoints
  */
-class LoginController extends Controller
+final class LoginController extends Controller
 {
     /**
      * POST Login

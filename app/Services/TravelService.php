@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Models\Travel;
 
-class TravelService
+final class TravelService
 {
     public function store(array $fields): Travel
     {

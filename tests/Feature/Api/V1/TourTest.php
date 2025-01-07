@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Tour;
 use App\Models\Travel;
 use Database\Seeders\RoleSeeder;
@@ -7,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 test('guest can access tours using public travel slug', function () {
     $this->seed(RoleSeeder::class);
-    $guest = \App\Models\User::factory()->create();
+    $guest = App\Models\User::factory()->create();
 
     $travel = Travel::factory(['is_public' => true])->create();
     $response = $this->actingAs($guest)->get(route('v1.travels.tours.index', ['travel' => $travel->slug]));
@@ -105,7 +107,7 @@ test('unauthenticated user cannot access tour store', function () {
 
 test('user guest cannot access tour store', function () {
     $this->seed(RoleSeeder::class);
-    $guest = \App\Models\User::factory()->create();
+    $guest = App\Models\User::factory()->create();
     $guest->roles()->sync([]);
 
     $travel = Travel::factory(['is_public' => true])->create();
@@ -126,7 +128,7 @@ test('user guest cannot access tour store', function () {
 
 test('user editor cannot access tour store', function () {
     $this->seed(RoleSeeder::class);
-    $editor = \App\Models\User::factory()->create();
+    $editor = App\Models\User::factory()->create();
     $editor->roles()->sync([]);
     $editor->assignRole('editor');
 
@@ -148,7 +150,7 @@ test('user editor cannot access tour store', function () {
 
 test('user admin can access tour store', function () {
     $this->seed(RoleSeeder::class);
-    $admin = \App\Models\User::factory()->create();
+    $admin = App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
 
@@ -170,7 +172,7 @@ test('user admin can access tour store', function () {
 
 test('tour store ending_date should be after starting_date', function () {
     $this->seed(RoleSeeder::class);
-    $admin = \App\Models\User::factory()->create();
+    $admin = App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
 
@@ -192,7 +194,7 @@ test('tour store ending_date should be after starting_date', function () {
 
 test('created new tour is in database', function () {
     $this->seed(RoleSeeder::class);
-    $admin = \App\Models\User::factory()->create();
+    $admin = App\Models\User::factory()->create();
     $admin->roles()->sync([]);
     $admin->assignRole('admin');
 

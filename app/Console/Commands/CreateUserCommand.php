@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Role;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
-class CreateUserCommand extends Command
+final class CreateUserCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -48,7 +50,7 @@ class CreateUserCommand extends Command
 
         DB::transaction(function () use ($user, $roleName) {
             $user = User::create($user);
-            //$user = $user->roles()->attach($roleId);
+            // $user = $user->roles()->attach($roleId);
             $user = $user->assignRole($roleName);
         });
 

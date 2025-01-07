@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
@@ -12,7 +14,7 @@ use App\Services\TourService;
 /**
  * @group Tour endpoints
  */
-class TourController extends Controller
+final class TourController extends Controller
 {
     /**
      * GET Travel Tours
@@ -29,7 +31,6 @@ class TourController extends Controller
      * @bodyParam sortOrder string. Example: "asc" or "desc"
      *
      * @response {"data":[{"id":"9958e389-5edf-48eb-8ecd-e058985cf3ce","name":"Tour on Sunday","starting_date":"2023-06-11","ending_date":"2023-06-16", ...}
-     *
      */
     public function index(TourRequest $request, Travel $travel)
     {

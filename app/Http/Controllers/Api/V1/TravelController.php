@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
@@ -12,7 +14,7 @@ use App\Services\TravelService;
 /**
  * @group Travel endpoints
  */
-class TravelController extends Controller
+final class TravelController extends Controller
 {
     /**
      * GET Travels

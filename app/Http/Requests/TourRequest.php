@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TourRequest extends FormRequest
+final class TourRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
