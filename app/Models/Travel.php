@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Travel extends Model
 {
-    use HasFactory, HasUuids, Sluggable, RespectsPrivacy;
+    use HasFactory, HasUuids, HasSlug, RespectsPrivacy;
 
     protected $table = 'travels';
 
@@ -35,13 +37,11 @@ class Travel extends Model
         'number_of_days' => 'int',
     ];
 
-    public function sluggable(): array
+    public function getSlugOptions(): SlugOptions
     {
-        return [
-            'slug' => [
-                'source' => 'name',
-            ],
-        ];
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 
     public function getRouteKeyName()
@@ -52,7 +52,7 @@ class Travel extends Model
     public function numberOfNights(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->number_of_days - 1
+            get: fn($value) => $this->number_of_days - 1
         );
     }
 
