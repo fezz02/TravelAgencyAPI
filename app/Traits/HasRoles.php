@@ -15,6 +15,7 @@ trait HasRoles
 
         $role = Role::where('name', $roleName)->firstOrFail();
         $this->roles()->syncWithoutDetaching([$role]);
+
         return $this->roles;
     }
 }

@@ -51,7 +51,7 @@ test('tours can be filtered by price', function (): void {
         'priceFrom' => 84,
         'priceTo' => 86,
     ]);
-    $response = $this->get(route('v1.travels.tours.index', ['travel' => $travel->slug]) . '?' . $params);
+    $response = $this->get(route('v1.travels.tours.index', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_OK);
     $response->assertJsonCount(1, 'data');
@@ -68,7 +68,7 @@ test('tours can be filtered by date', function (): void {
         'dateFrom' => $tour->starting_date,
         'dateTo' => $tour->ending_date,
     ]);
-    $response = $this->get(route('v1.travels.tours.index', ['travel' => $travel->slug]) . '?' . $params);
+    $response = $this->get(route('v1.travels.tours.index', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_OK);
     $response->assertJsonFragment([
@@ -84,7 +84,7 @@ test('tours validation works', function (): void {
     $params = http_build_query([
         'orderBy' => 'test',
     ]);
-    $response = $this->getJson(route('v1.travels.tours.index', ['travel' => $travel->slug]) . '?' . $params);
+    $response = $this->getJson(route('v1.travels.tours.index', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
 });
@@ -100,7 +100,7 @@ test('unauthenticated user cannot access tour store', function (): void {
         'price' => random_int(20, 100),
     ]);
 
-    $response = $this->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]) . '?' . $params);
+    $response = $this->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 });
@@ -121,7 +121,7 @@ test('user guest cannot access tour store', function (): void {
     ]);
 
     $response = $this->actingAs($guest)
-        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]) . '?' . $params);
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_FORBIDDEN);
 });
@@ -143,7 +143,7 @@ test('user editor cannot access tour store', function (): void {
     ]);
 
     $response = $this->actingAs($editor)
-        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]) . '?' . $params);
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_FORBIDDEN);
 });
@@ -165,7 +165,7 @@ test('user admin can access tour store', function (): void {
     ]);
 
     $response = $this->actingAs($admin)
-        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]) . '?' . $params);
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_OK);
 });
@@ -187,7 +187,7 @@ test('tour store ending_date should be after starting_date', function (): void {
     ]);
 
     $response = $this->actingAs($admin)
-        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]) . '?' . $params);
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
 });
@@ -209,7 +209,7 @@ test('created new tour is in database', function (): void {
     ]);
 
     $response = $this->actingAs($admin)
-        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]) . '?' . $params);
+        ->postJson(route('v1.travels.tours.store', ['travel' => $travel->slug]).'?'.$params);
 
     $this->assertDatabaseHas('travels', $travel->toArray());
 });
