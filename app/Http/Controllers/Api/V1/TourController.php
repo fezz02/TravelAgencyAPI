@@ -10,6 +10,9 @@ use App\Http\Requests\TourRequest;
 use App\Http\Resources\TourResource;
 use App\Models\Travel;
 use App\Services\TourService;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @group Tour endpoints
@@ -32,22 +35,22 @@ final class TourController extends Controller
      *
      * @response {"data":[{"id":"9958e389-5edf-48eb-8ecd-e058985cf3ce","name":"Tour on Sunday","starting_date":"2023-06-11","ending_date":"2023-06-16", ...}
      */
-    public function index(TourRequest $request, Travel $travel)
+    public function index(TourRequest $request, Travel $travel): AnonymousResourceCollection
     {
         $tours = $travel->tours()
-            ->when($request->priceFrom, function ($query) use ($request) {
+            ->when($request->priceFrom, function (Builder $query) use ($request): void {
                 $query->where('price', '>', $request->priceFrom * 100);
             })
-            ->when($request->priceTo, function ($query) use ($request) {
+            ->when($request->priceTo, function (Builder $query) use ($request): void {
                 $query->where('price', '<', $request->priceTo * 100);
             })
-            ->when($request->dateFrom, function ($query) use ($request) {
+            ->when($request->dateFrom, function (Builder $query) use ($request): void {
                 $query->whereDate('starting_date', '>', $request->dateFrom);
             })
-            ->when($request->dateTo, function ($query) use ($request) {
+            ->when($request->dateTo, function (Builder $query) use ($request): void {
                 $query->whereDate('ending_date', '<', $request->dateTo);
             })
-            ->when($request->sortBy && $request->sortOrder, function ($query) use ($request) {
+            ->when($request->sortBy && $request->sortOrder, function (Builder $query) use ($request): void {
                 $query->orderBy($request->orderBy, $request->orderDirection);
             })
             ->orderBy('starting_date')
@@ -56,7 +59,7 @@ final class TourController extends Controller
         return TourResource::collection($tours);
     }
 
-    public function store(StoreTourRequest $request, Travel $travel, TourService $service)
+    public function store(StoreTourRequest $request, Travel $travel, TourService $service): JsonResponse
     {
         $tour = $service->store($request->validated(), $travel);
 

@@ -13,16 +13,8 @@ trait HasRoles
     {
         $roleName = Str::snake($roleName);
 
-        switch ($roleName) {
-            case 'admin':
-                $admin = Role::where('name', 'admin')->firstOrFail();
-                $this->roles()->attach($admin);
-            case 'editor':
-                $editor = Role::where('name', 'editor')->firstOrFail();
-                $this->roles()->attach($editor);
-                break;
-        }
-
+        $role = Role::where('name', $roleName)->firstOrFail();
+        $this->roles()->syncWithoutDetaching([$role]);
         return $this->roles;
     }
 }

@@ -30,7 +30,7 @@ final class CreateUserCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): ?int
     {
         $user = [];
         $user['name'] = $this->ask('name of the new User');
@@ -48,13 +48,15 @@ final class CreateUserCommand extends Command
             return -1;
         }
 
-        DB::transaction(function () use ($user, $roleName) {
+        DB::transaction(function () use ($user, $roleName): void {
             $user = User::create($user);
             // $user = $user->roles()->attach($roleId);
             $user = $user->assignRole($roleName);
         });
 
         $this->info('user '.$user['name'].' with email '.$user['email'].' created successfully via artisan command');
+
+        return null;
     }
 
     private function validateUser(array $user): bool

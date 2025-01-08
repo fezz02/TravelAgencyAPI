@@ -15,12 +15,14 @@
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "knuckleswtf/scribe": "^4.21",
+        "larastan/larastan": "^3.0",
         "laravel/pint": "^1.10",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.0",
-        "larastan/larastan": "^2.6",
-        "pestphp/pest": "^3.7"
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-type-coverage": "^3.2",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -58,7 +60,7 @@
             "phpstan analyse"
         ],
         "test:type-coverage": "pest --type-coverage --min=100",
-        "test:unit": "pest --parallel --ci",
+        "test:unit": "pest --parallel --ci --coverage --min=100.0",
         "test": [
             "@test:lint",
             "@test:refactor",

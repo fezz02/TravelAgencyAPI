@@ -48,7 +48,7 @@ final class Travel extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -56,7 +56,7 @@ final class Travel extends Model
     public function numberOfNights(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->number_of_days - 1
+            get: fn (): int => $this->number_of_days - 1
         );
     }
 
