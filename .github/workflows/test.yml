@@ -11,30 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Configura PHP 8.2
       - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
         with:
-          php-version: '8.2'
+          php-version: '8.3'
 
-      # Effettua il checkout del repository
+      # Check out the repository
       - uses: actions/checkout@v4
 
-      # Copia il file .env.example in .env se non esiste
+      # Copy the .env.example file to .env if it does not exist
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      # Installa le dipendenze di Composer
+      # Install Composer dependencies
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      # Genera la chiave di applicazione
+      # Generate the application key
       - name: Generate key
         run: php artisan key:generate
 
-      # Imposta le autorizzazioni delle directory necessarie
+      # Set permissions for necessary directories
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
-      # Esegui la test suite completa usando composer
+      # Run the full test suite using composer
       - name: Run Composer Test Suite
         run: composer test
